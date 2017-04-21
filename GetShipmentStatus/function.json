@@ -1,0 +1,34 @@
+{
+  "disabled": false,
+  "bindings": [
+    {
+      "name": "myTimer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 */5 * * * *"
+    },
+    {
+      "name": "lastShipmentData",
+      "type": "table",
+      "direction": "in",
+      "tableName": "ShipmentData",
+      "partitionKey": "YAX004565416",
+      "connection": "AzureWebJobsDashboard",
+      "take": 1
+    },
+    {
+      "type": "twilioSms",
+      "name": "textMessage",
+      "accountSid": "TwilioAccountSid",
+      "authToken": "TwilioAuthToken",
+      "direction": "out",
+    },
+    {
+      "name": "outTable",
+      "type": "table",
+      "direction": "out",
+      "tableName": "ShipmentData",
+      "connection": "AzureWebJobsDashboard"
+    }
+  ]
+}
