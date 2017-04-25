@@ -51,10 +51,16 @@ module.exports = function (context, myTimer) {
         context.log('Updates? ', shouldNotify);
 
         if(shouldNotify){
+          let body = data.reduce((body, history) => {
+            return body + `${history.date} ${history.time}: ${history.location} : ${history.action}\n`
+          }, "");
+
+          body = body + `\n${getUrl}`;
+
           context.bindings.textMessage = {
-            body: `Updates for ${getUrl}`,
             to: process.env.TO_PHONE_NUMBER,
             from: process.env.FROM_PHONE_NUMBER,
+            body
           };
         }
       }
